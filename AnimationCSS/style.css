@@ -1,0 +1,322 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* background-color: black; */
+}
+
+/* ***********************************ANIMATION DEPLACEMENT:EASE IN OUT ou BEFORE************************* */
+#div1{
+height: 120px;
+width: 80px;
+background: red;
+position: relative;
+margin: 80px;
+/* animation: 3s ease-in-out 1s infinite test; */
+}
+#div1::before{
+    content:"";
+    height: 0px;
+    width: 80px;
+    border-top-right-radius: 50%;
+    background: blue;
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    animation: 3s ease-in-out 2s infinite testzero;
+}
+/* @keyframes test{
+    from{margin: 50px; opacity: 0;}
+    to{margin: 500px; opacity: 1; transform: scale (0.5);}
+} */
+@keyframes testzero{
+to{height: 100%;}
+}
+
+/* animation à utiliser avec le from: endroit d'où ça part et to: jusqu'à
+on nomme l'animation test mais on peut lui donner un autre nom, infinite c est pour que ça se rejoue plusieurs fois sinon ça ne lef ait q'une fois */
+
+/* Deuxieme manière de faire: avec les pourcentages, à tant que pourcent de l'animation ça fera 1s, puis ça fera 2s, et de 50 à 60% ça fera 3s, ça permet de gérer plus d'étapes */
+/* @keyframes test{
+    from{margin: 50px; opacity: 0;}
+    to{margin: 500px; opacity: 1; transform: scale (0.5);}
+} */
+
+/* **************************************ANIMATION ROTATE****************************** */
+#div2{
+height: 80px;
+width: 80px;
+background: blue;
+animation: 3s ease-in-out 1s infinite test2;
+}
+@keyframes test2{
+    to{transform: rotate(360deg);}
+}
+/* *****************************************ANIMATION SKEW distorsion en étirant chaque point de l'élément******** */
+#div3{
+height: 100px;
+width: 100px;
+background:greenyellow;
+border-radius: 45%;
+animation: 1s ease-in-out 1s infinite test3;
+}
+@keyframes test3{
+    0%{transform: skew(80deg, 80deg)};
+    100%{transform: skew(80deg, 40deg)};
+}
+
+/* ******************************************ANIMATION SLIDE IN TEXTE Alice********************* */
+p {
+    animation-duration:10s;
+    animation-name: slidein;
+  }
+@keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%;
+    }
+    75% {
+      font-size: 300%;
+      margin-left: 25%;
+      width: 150%;
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+}
+/* ****************************************ANIMATION DEFORM********************************* */
+#circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: blue;
+    animation: deform 8s ease-in-out infinite;
+  }
+  @keyframes deform {
+    0% {
+      transform: scale(1);
+    }
+    12.5% {
+      transform: rotate(15deg) scale(1.2, 0.8) skew(15deg);
+    }
+    25% {
+      transform: skew(30deg) scale(0.8, 1.2) rotate(-15deg);
+    }
+    37.5% {
+      transform: rotate(-15deg) scale(1.2, 0.8) skew(-15deg);
+    }
+    50% {
+      transform: skew(-30deg) scale(0.8, 1.2) rotate(15deg);
+    }
+    62.5% {
+      transform: rotate(15deg) scale(1.2, 0.8) skew(15deg);
+    }
+    75% {
+      transform: skew(30deg) scale(0.8, 1.2) rotate(-15deg);
+    }
+    87.5% {
+      transform: rotate(-15deg) scale(1.2, 0.8) skew(-15deg);
+    }
+    100% {
+      transform: scale(1) rotate(0deg) skew(0deg);
+    }
+  }
+/* ******************************************ANIMATION BOX BEFORE GRADIENT******************************* */
+.box {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background-color: #FF7F50;
+    position: relative;
+  }
+.box:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(45deg, #FFA07A, #FF0000, #FFA07A, #FF0000);
+    background-size: 400%;
+    animation: gradient 10s ease-in-out infinite;
+  }
+  @keyframes gradient {
+    0% {
+      background-position: 0 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0 50%;
+    }
+  }
+
+/* ***********************************ANIMATION BACKDROP: image qui se tourne sur elle même********************* */
+div.backdrop{
+    position: relative;
+    height: 300px;
+    width: 200px;
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: 3s ease-in 1s infinite angelika;
+}
+div img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+div img:nth-child(2){
+    transform: rotateY(-180deg);
+}
+
+@keyframes angelika{
+    from{transform:rotateY(0);}
+    to{transform:rotateY(360deg)}
+}
+
+/* *****************************BANDEAU APPARITION DE TEXTE************************************************** */
+.container{
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 100 20px 0;
+    background: url("img/bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+}
+h1{
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: rgb(49, 32, 35);
+    font-weight: 900;
+    color:transparent;
+    font-size: 0;
+}
+h2{
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: rgb(124, 110, 113);
+    font-weight: 100;
+    color:transparent;
+    font-size: 0;
+}
+h1 span{
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    font-size: clamp(20px, 8vw, 120px);
+}
+h2 span{
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    font-size: clamp(20px, 8vw, 120px);
+}
+h1 span::after {
+    content:"";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+}
+h2 span::after {
+    content:"";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+}
+h1{
+    font-weight: 300;
+    animation: txt-appearance 0s 1s forwards;
+}
+h2{
+    animation: txt-appearance 0s 1.25s forwards;
+}
+h1 span::after {
+    background: salmon;
+    animation: slide-in 0.75s ease-out forwards,
+    slide-out 0.75s 1s ease-out forwards;
+}
+h2 span::after {
+    background: royalblue;
+    animation: slide-in 0.75s 0.3s ease-out forwards,
+    slide-out 0.75s 1.3s ease-out forwards;
+}
+
+@keyframes slide-in {
+    100% {
+        transform: translateX(0%);
+    }
+}
+@keyframes slide-out {
+    100% {
+        transform: translateX(100%)
+    }
+}
+@keyframes txt-appearance {
+    100% {
+        color: #222;
+    }
+}
+
+
+/* **************************APPARITION DE TEXTE METHODE 2 H3******************************************** */
+div.apparition{
+    height:120px;
+    width:350px;
+    background-color: white;
+    margin:80px;
+    position:relative;
+    /* white-space: nowrap; */
+}
+div.apparition::before{
+    content:'';
+    height:100%;
+    width:100%;
+    background:white;
+    position:absolute;
+    top:0%;
+    right:0;
+    animation: 3s ease-in-out 1s infinite appear
+}
+@keyframes appear{
+    to{width:0%;}
+}
+
+/* **************************APPARITION DE TEXTE: METHODE 3 H4******************************************** */
+h4 {
+    width: 400px;
+    /* text-align: center; */
+    font-size: 3em;
+    font-family: sans-serif;
+    color: #100202;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #000;
+    animation: typing 4s steps(200) forwards;
+  }
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
